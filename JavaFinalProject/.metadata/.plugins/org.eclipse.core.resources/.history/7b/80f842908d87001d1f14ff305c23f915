@@ -1,0 +1,90 @@
+import java.awt.*;
+import java.awt.event.*;
+import java.io.*;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
+public class TestPre extends JFrame implements ActionListener{
+
+	static JLabel shoesicon;
+	static JLabel title1;
+	static JLabel title2;
+	static JButton enter;
+	static JButton exit;
+	private static JFrame frame = new JFrame("MainFrame");
+	
+	public static void main(String[] args) {
+		final JTextField tf=new JTextField();  
+		tf.setBounds(100,100,150,30);
+		
+		JFrame frame = new JFrame("MainFrame");
+		frame.setTitle("Pre-Order");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(800,600);
+		frame.setLocation(350,100);
+		frame.setLayout(null); 
+		frame.setVisible(true);
+
+		JButton start = new JButton("Start");
+		start.setBounds(100,150,90,40);  
+		frame.add(start);
+		start.addActionListener(new ActionListener()
+		{  
+			 public void actionPerformed(ActionEvent e){  
+				  frame.dispose();
+				  //new HomePage().setVisible(true);
+				  //frame.setVisible(false);
+			      //new OtherFrame().setVisible(true);
+				  //System.exit(0); //ออกจาก program
+		     }  
+		} );  
+		
+		/*
+		Image shoes = new ImageIcon(frame.getClass().
+				getResource("/shoes.png")).getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH);
+		Image enterr = new ImageIcon(frame.getClass().
+				getResource("/enter.png")).getImage().getScaledInstance(15, 15, java.awt.Image.SCALE_SMOOTH);
+		Image exitt = new ImageIcon(frame.getClass().
+				getResource("/logout.png")).getImage().getScaledInstance(15, 15, java.awt.Image.SCALE_SMOOTH);
+		*/
+		
+		shoesicon = new JLabel("");
+		shoesicon.setIcon(new ImageIcon(shoes));
+		shoesicon.setBounds(300,180,200,200);
+		
+		enter = new JButton("Enter");
+		//enter.setIcon(new ImageIcon(enterr));
+		enter.setBounds(200,450,90,40);
+		enter.addActionListener(new ActionListener()
+		{  
+			 public void actionPerformed(ActionEvent e){  
+				  //frame.dispose();
+				  //new HomePage().setVisible(true);
+		     }  
+		} ); 
+		
+		exit = new JButton("Exit");
+		//exit.setIcon(new ImageIcon(exitt));
+		exit.setBounds(500,450,90,40);
+		exit.addActionListener(new ActionListener()
+		{  
+			 public void actionPerformed(ActionEvent e){  
+				  frame.dispose();
+		     }  
+		} ); 
+		
+		frame.add(enter);
+		frame.add(exit);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
+}

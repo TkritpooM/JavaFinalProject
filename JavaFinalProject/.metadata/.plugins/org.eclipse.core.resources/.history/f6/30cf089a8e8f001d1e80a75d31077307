@@ -61,7 +61,7 @@ public class ShowInformation extends JFrame implements ActionListener {
 			price.setForeground(Color.BLACK);
 			price.setBorder(new EmptyBorder(0,10,0,0));
 			
-			Scolor = new JLabel("Color            : " + Sinfo[2]);
+			Scolor = new JLabel("Color           : " + Sinfo[2]);
 			Scolor.setBounds(150,240,400,400);
 			Scolor.setFont(new Font("Mali-Bold",Font.BOLD,20));
 			Scolor.setForeground(Color.BLACK);

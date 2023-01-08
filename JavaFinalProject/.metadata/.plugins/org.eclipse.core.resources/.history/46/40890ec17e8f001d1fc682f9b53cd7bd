@@ -16,17 +16,11 @@ public class ShowInformation extends JFrame implements ActionListener {
 
 	JLabel title1,shoes,Sname,price,Scolor;
 	JButton cancel,confirm;
-	public String ID;
-	public BufferedImage Spic;
 	
 	public ShowInformation(String modelcode,BufferedImage Cshoes) {
 		
 		BufferedImage icon,cel,confrm;
-		
 		String Sinfo[] = modelcode.split(",");
-		//put name/pic into variable and sent to other Class
-		ID = Sinfo[0];
-		Spic = Cshoes;
 		
 		try {
 			icon = ImageIO.read(new File("img/icon.jpg"));
@@ -49,7 +43,7 @@ public class ShowInformation extends JFrame implements ActionListener {
 			shoes.setIcon(new ImageIcon(Cshoes.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH)));
 			shoes.setBounds(280, 100, 200, 200);
 			
-			Sname = new JLabel("Model name : " + Sinfo[0] + " (Nike)");
+			Sname = new JLabel("Model name : " + Sinfo[0] + " Nike");
 			Sname.setBounds(150,160,400,400);
 			Sname.setFont(new Font("Mali-Bold",Font.BOLD,20));
 			Sname.setForeground(Color.BLACK);
@@ -61,7 +55,7 @@ public class ShowInformation extends JFrame implements ActionListener {
 			price.setForeground(Color.BLACK);
 			price.setBorder(new EmptyBorder(0,10,0,0));
 			
-			Scolor = new JLabel("Color            : " + Sinfo[2]);
+			Scolor = new JLabel("Color           : " + Sinfo[2]);
 			Scolor.setBounds(150,240,400,400);
 			Scolor.setFont(new Font("Mali-Bold",Font.BOLD,20));
 			Scolor.setForeground(Color.BLACK);
@@ -98,8 +92,7 @@ public class ShowInformation extends JFrame implements ActionListener {
 			new Show().setVisible(true);
 		}
 		else if (e.getActionCommand().equals("Confirm")) {
-			this.dispose();
-			new ChooseSize(ID,Spic).setVisible(true);
+			//Empty command --> for next page
 		}
 	}
 }

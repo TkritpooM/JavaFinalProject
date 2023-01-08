@@ -49,7 +49,7 @@ public class ShowInformation extends JFrame implements ActionListener {
 			shoes.setIcon(new ImageIcon(Cshoes.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH)));
 			shoes.setBounds(280, 100, 200, 200);
 			
-			Sname = new JLabel("Model name : " + Sinfo[0] + " (Nike)");
+			Sname = new JLabel("Model name : " + Sinfo[0] + " Nike");
 			Sname.setBounds(150,160,400,400);
 			Sname.setFont(new Font("Mali-Bold",Font.BOLD,20));
 			Sname.setForeground(Color.BLACK);
@@ -61,7 +61,7 @@ public class ShowInformation extends JFrame implements ActionListener {
 			price.setForeground(Color.BLACK);
 			price.setBorder(new EmptyBorder(0,10,0,0));
 			
-			Scolor = new JLabel("Color            : " + Sinfo[2]);
+			Scolor = new JLabel("Color           : " + Sinfo[2]);
 			Scolor.setBounds(150,240,400,400);
 			Scolor.setFont(new Font("Mali-Bold",Font.BOLD,20));
 			Scolor.setForeground(Color.BLACK);

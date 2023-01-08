@@ -17,9 +17,7 @@ public class HomePage extends JFrame implements ActionListener{
 	JButton enter,exit;
 	
 	public HomePage() {
-		
 		BufferedImage icon = null,shoes = null,enterr = null,exitt = null;
-		
 		try {
 			icon = ImageIO.read(new File("img/icon.jpg"));
 		    this.setIconImage(icon);

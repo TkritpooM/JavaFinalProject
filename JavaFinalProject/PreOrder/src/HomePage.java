@@ -25,7 +25,8 @@ public class HomePage extends JFrame implements ActionListener{
 			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			this.setSize(800, 600);
 			this.setLocation(350, 100);
-			this.getContentPane().setBackground(Color.GRAY);
+			//this.getContentPane().setBackground(Color.GRAY);
+			this.setLocationRelativeTo(null);
 			this.setLayout(null);
 			
 			title1 = new JLabel("Pre-Order");

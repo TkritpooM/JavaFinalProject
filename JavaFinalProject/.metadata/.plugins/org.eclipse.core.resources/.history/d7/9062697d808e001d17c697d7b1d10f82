@@ -1,0 +1,120 @@
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+
+import javax.imageio.ImageIO;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
+import javax.swing.border.EmptyBorder;
+
+public class Show extends JFrame implements ActionListener{
+
+	JLabel title1,shoes1,shoes2,shoes3,shoes4;  //ใส่รูปรองเท้า
+	JRadioButton radiobutton,radiobutton2,radiobutton3,radiobutton4; //ปุ่มเลือกรองเท้า
+	JButton confirm;
+	
+	public Show() {
+		BufferedImage icon = null;
+		try {
+			icon = ImageIO.read(new File("img/icon.jpg"));
+		    this.setIconImage(icon);
+			this.setTitle("Shoes Pre-Order");
+			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			this.setSize(800, 600);
+			this.setLocation(350, 100);
+			//this.getContentPane().setBackground(Color.WHITE);
+			this.setLocationRelativeTo(null);
+			this.setLayout(null);
+			
+			title1 = new JLabel("Shoes List");
+			title1.setBounds(290,25,400,50);
+			title1.setFont(new Font("Mali-Bold",Font.BOLD,40));
+			title1.setForeground(Color.BLACK);
+			title1.setBorder(new EmptyBorder(0,10,0,0));
+			
+			radiobutton = new JRadioButton("A111");
+			//btn.setFont(new Font("Mali-Bold",Font.BOLD,18));
+			radiobutton.setFocusable(false);
+			radiobutton.setBounds(190,200,300,50);
+			
+			radiobutton2 = new JRadioButton("A112");
+			//btn.setFont(new Font("Mali-Bold",Font.BOLD,18));
+			radiobutton2.setFocusable(false);
+			radiobutton2.setBounds(500,200,300,50);
+			
+			radiobutton3 = new JRadioButton("A113");
+			//btn.setFont(new Font("Mali-Bold",Font.BOLD,18));
+			radiobutton3.setFocusable(false);
+			radiobutton3.setBounds(190,380,300,50);
+
+			radiobutton4 = new JRadioButton("A114");
+			//btn.setFont(new Font("Mali-Bold",Font.BOLD,18));
+			radiobutton4.setFocusable(false);
+			radiobutton4.setBounds(500,380,300,50);
+			
+			confirm = new JButton("Confirm");
+			//confirm.setIcon(new ImageIcon(confirm.getScaledInstance(15, 15, java.awt.Image.SCALE_SMOOTH)));
+			confirm.setBounds(650,480,90,40);
+			confirm.addActionListener(this);
+			
+			ButtonGroup bg = new ButtonGroup();
+			bg.add(radiobutton);
+			bg.add(radiobutton2);
+			bg.add(radiobutton3);
+			bg.add(radiobutton4);
+			
+			this.add(title1);
+			this.add(radiobutton);
+			this.add(radiobutton2);
+			this.add(radiobutton3);
+			this.add(radiobutton4);
+			this.add(confirm);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String information = "";
+		if (e.getActionCommand().equals("Confirm")) 
+		{
+			if ( (radiobutton.isSelected()||radiobutton2.isSelected()||
+				  radiobutton3.isSelected()||radiobutton4.isSelected()) ) 
+			{
+				if (radiobutton.isSelected()) {
+					information = "A111,10B,blue,1doapw";
+				}
+				if (radiobutton2.isSelected()) {
+					information = "A112,10B,blue,2doapwocpmfap";
+				}
+				if (radiobutton3.isSelected()) {
+					information = "A113,10B,blue,3doapwocpmfapovmgfop";
+				}
+				if (radiobutton4.isSelected()) {
+					information = "A114,1000B,blue,4doapwocpmfapovmgfop;amvgoa";
+				}
+				this.dispose();
+				new ShowInformation(information).setVisible(true);
+			}
+			else if (  !(radiobutton.isSelected()||radiobutton2.isSelected()||
+					    radiobutton3.isSelected()||radiobutton4.isSelected())  ) 
+			{
+		        JOptionPane.showMessageDialog(null,
+						"You must select 1 types of shoes", "ERROR !!",
+						JOptionPane.ERROR_MESSAGE);
+		        //this.setVisible(false);
+		        new Show().setVisible(true);
+			}
+			
+		}
+		
+	}
+}

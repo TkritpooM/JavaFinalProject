@@ -11,7 +11,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
 
@@ -90,32 +89,8 @@ public class ChooseSize extends JFrame implements ActionListener{
 	}
 	
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent arg0) {
 		//empty button command
-		String size = null;
-		
-		if (e.getActionCommand().equals("Confirm")) {
-			if (!(S1.isSelected() || S2.isSelected() || S3.isSelected() || S4.isSelected())) {
-				JOptionPane.showMessageDialog(null, "You must select 1 size", "ERROR !!",
-						                      JOptionPane.ERROR_MESSAGE);
-			}
-			else {
-				if (S1.isSelected()) {
-					size = "40";
-				}
-				if (S2.isSelected()) {
-					size = "41";
-				}
-				if (S3.isSelected()) {
-					size = "42";
-				}
-				if (S4.isSelected()) {
-					size = "43";
-				}
-				this.dispose();
-				new Address().setVisible(true);
-			}
-		}
 		
 	}
 

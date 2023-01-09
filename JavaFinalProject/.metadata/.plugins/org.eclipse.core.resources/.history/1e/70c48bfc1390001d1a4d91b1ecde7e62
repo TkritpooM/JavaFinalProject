@@ -1,0 +1,13 @@
+import java.awt.Color;
+import java.awt.Font;
+
+import javax.swing.JLabel;
+
+public class CreateText {
+	public void CreateText(JLabel CText,String message,int x,int y,int width,int height,int font) {
+		CText = new JLabel(message);
+		CText.setBounds(x, y, width, height);
+		CText.setFont(new Font("Mali-Bold", Font.BOLD, font));
+		CText.setForeground(Color.BLACK);
+	}
+}

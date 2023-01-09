@@ -21,7 +21,14 @@ public class ChooseSize extends JFrame implements ActionListener{
 	JRadioButton S1, S2, S3, S4;
 	JButton cancel,confirm;
 	
-	public ChooseSize (String modelcode,BufferedImage Cshoes) {
+	//--Sent variable--//
+	public String AllInfo; //""
+	public BufferedImage Spic;
+	
+	public ChooseSize (String modelcode,BufferedImage Cshoes,String Ainfo) {
+		
+		AllInfo = Ainfo; //"Jordan 1 Chicago,5200B,Red"
+		Spic = Cshoes;
 		
 		BufferedImage icon,confrm;
 		
@@ -112,8 +119,9 @@ public class ChooseSize extends JFrame implements ActionListener{
 				if (S4.isSelected()) {
 					size = "43";
 				}
+				AllInfo += "," + size;  //"Jordan 1 Chicago,5200B,Red,40" 
 				this.dispose();
-				new Address().setVisible(true);
+				new Address(AllInfo,Spic).setVisible(true);
 			}
 		}
 		

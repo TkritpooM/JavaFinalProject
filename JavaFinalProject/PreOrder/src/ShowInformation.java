@@ -14,12 +14,17 @@ import javax.swing.border.EmptyBorder;
 
 public class ShowInformation extends JFrame implements ActionListener {
 
+	//--Sent variable--//
+	public String AllInfo; //""
+	
 	JLabel title1,shoes,Sname,price,Scolor;
 	JButton cancel,confirm;
 	public String ID;
 	public BufferedImage Spic;
 	
 	public ShowInformation(String modelcode,BufferedImage Cshoes) {
+		
+		AllInfo = modelcode; //"Jordan 1 Chicago,5200B,Red"
 		
 		BufferedImage icon,cel,confrm;
 		
@@ -99,7 +104,7 @@ public class ShowInformation extends JFrame implements ActionListener {
 		}
 		else if (e.getActionCommand().equals("Confirm")) {
 			this.dispose();
-			new ChooseSize(ID,Spic).setVisible(true);
+			new ChooseSize(ID,Spic,AllInfo).setVisible(true);
 		}
 	}
 }

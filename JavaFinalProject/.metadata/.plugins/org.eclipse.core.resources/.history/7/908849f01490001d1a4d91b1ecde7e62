@@ -1,0 +1,7 @@
+import javax.swing.JFrame;
+
+public class TestPre extends JFrame{
+	public static void main(String[] args) {
+		new Receipt("Jordan 1 Chicago,5200B,Red,40,name,address,zip,mail,country,phone").setVisible(true);
+	}
+}

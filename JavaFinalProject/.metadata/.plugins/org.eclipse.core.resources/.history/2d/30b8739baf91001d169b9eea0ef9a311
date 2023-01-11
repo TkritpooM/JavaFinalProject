@@ -1,0 +1,8 @@
+import javax.swing.JFrame;
+
+public class TestPre extends JFrame{
+	public static void main(String[] args) {
+		String blank[] = null;
+		new Login(blank).setVisible(true);
+	}
+}

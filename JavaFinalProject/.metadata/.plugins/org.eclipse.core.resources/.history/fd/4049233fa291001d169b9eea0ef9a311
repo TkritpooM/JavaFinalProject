@@ -1,0 +1,123 @@
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
+import Instance.*;
+
+public class Login extends JFrame implements ActionListener{
+	
+	BufferedImage icon;
+	JLabel Title,Username,Password,userimage,passimage;
+	JTextField user; JPasswordField pass;
+ 	JLabel label_password,label_username,message,title;
+ 	JButton btn,reset_btn,next;
+ 	JCheckBox showPassword;
+	
+	public Login() {
+		try {
+			icon = ImageIO.read(new File("img/icon.jpg"));
+			this.setIconImage(icon);
+			this.setTitle("Shoes Pre-Order");
+			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			this.setSize(800, 600);
+			this.setLocationRelativeTo(null); // ---Set Frame in the middle---//
+			this.setLayout(null);
+			
+			CreateLabel cl = new CreateLabel();
+			CreateButton cb = new CreateButton();
+			InsertImage ii = new InsertImage();
+			
+			Title = cl.CreateLabel("Sneaker Pre-Order", 240, 30, 400,50, 40);
+			
+			userimage = ii.InsertImage("img/user.png", 180,145,20,20);
+			Username = cl.CreateLabel("Username", 200,150,200,40,18 );
+			user = new JTextField();
+			user.setBounds(300,150,200,40);
+			
+			passimage = ii.InsertImage("img/pass.png", 200,60,400,400);
+			Password = cl.CreateLabel("Password", 200,200,200,40, 18);
+			pass = new JPasswordField();
+			pass.setBounds(300,200,200,40);
+			
+			showPassword = new JCheckBox("Show Password");
+			showPassword.setBounds(300,240,300,40);
+			showPassword.addActionListener(this);
+			
+			btn = new JButton("Sign-in");
+			btn.setBounds(300,290,90,40);
+			btn.addActionListener(this);
+			
+			reset_btn = new JButton("Reset");
+			reset_btn.setBounds(400,290,90,40);
+			reset_btn.addActionListener(this);
+			
+			this.add(Title);
+			
+			this.add(userimage);
+			this.add(Username);
+			this.add(user);
+			this.add(Password);
+			this.add(pass);
+			this.add(showPassword);
+			this.add(btn);
+			this.add(reset_btn);
+		} catch (Exception e) {
+			// use to detected error from image search --> print in console
+			// print in the console class name and line number where the exception occurred
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		/*
+		if(e.getSource() == btn) {
+			String userText = user.getText();
+			String pwdText = new String(pass.getPassword());
+			
+			if(userText.equalsIgnoreCase("Kely") && pwdText.equalsIgnoreCase("Pass")) {
+				//message.setText("You sucessfully logged in !!!");
+				JOptionPane.showMessageDialog(this,"You sucessfully logged in !!!");
+			}
+			else {
+				//message.setText("Invlaid username and password");
+			    JOptionPane.showMessageDialog(this, "Invlaid username and password");
+			}
+		}
+		
+		if (e.getActionCommand().equals("Reset")){
+		//if(e.getSource() == reset_btn) { 
+			username.setText("");
+			password.setText("");
+		}
+		
+		if(e.getSource() == showPassword) {
+			if(showPassword.isSelected()) {
+				password.setEchoChar((char) 0);
+			}
+			else {
+				password.setEchoChar('*');
+			}
+		}
+		
+		if(e.getActionCommand().equals("OtherFrame")) {
+			this.dispose();
+			new OtherFrame().setVisible(true);
+		}
+		*/
+	}
+
+}

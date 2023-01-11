@@ -1,0 +1,50 @@
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+import Instance.*;
+
+public class Login extends JFrame implements ActionListener{
+	
+	BufferedImage icon;
+	JLabel Title;
+	
+	public Login() {
+		try {
+			icon = ImageIO.read(new File("img/icon.jpg"));
+			this.setIconImage(icon);
+			this.setTitle("Shoes Pre-Order");
+			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			this.setSize(800, 600);
+			this.setLocationRelativeTo(null); // ---Set Frame in the middle---//
+			this.setLayout(null);
+			
+			CreateLabel cl = new CreateLabel();
+			CreateButton cb = new CreateButton();
+			Title = cl.CreateLabel("Sneaker Pre-Order", 240, 50, 400,50, 40);
+			
+			this.add(Title);
+		} catch (Exception e) {
+			// use to detected error from image search --> print in console
+			// print in the console class name and line number where the exception occurred
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

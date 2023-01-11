@@ -1,4 +1,5 @@
 
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -9,7 +10,8 @@ import java.io.File;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
+
+import Instance.CreateLabel;
 
 public class HomePage extends JFrame implements ActionListener{
 
@@ -31,17 +33,9 @@ public class HomePage extends JFrame implements ActionListener{
 			this.setLocationRelativeTo(null);
 			this.setLayout(null);
 			
-			title1 = new JLabel("Pre-Order");
-			title1.setBounds(290,50,400,50);
-			title1.setFont(new Font("Mali-Bold",Font.BOLD,40));
-			title1.setForeground(Color.BLACK);
-			title1.setBorder(new EmptyBorder(0,10,0,0));
-			
-			title2 = new JLabel("Sneaker");
-			title2.setBounds(300,100,400,50);
-			title2.setFont(new Font("Mali-Bold",Font.BOLD,40));
-			title2.setForeground(Color.BLACK);
-			title2.setBorder(new EmptyBorder(0,10,0,0));
+			CreateLabel cl = new CreateLabel();
+			title1 = cl.CreateLabel("Pre-Order", 290, 50, 400,50, 40);
+			title2 = cl.CreateLabel("Sneaker", 300,100,400,50, 40);
 			
 			shoes = ImageIO.read(new File("img/222222.png"));
 			enterr = ImageIO.read(new File("img/enter.png"));

@@ -1,0 +1,135 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+
+import javax.imageio.ImageIO;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
+import Instance.CreateButton;
+import Instance.CreateLabel;
+import Instance.InsertImage;
+
+public class Register extends JFrame implements ActionListener{
+	
+	BufferedImage icon;
+	JTextField firstname,lastname,user;
+	JPasswordField pass,Cpass;
+	JCheckBox showPassword;
+	
+	public Register() {
+		try {
+			icon = ImageIO.read(new File("img/icon.jpg"));
+			this.setIconImage(icon);
+			this.setTitle("Shoes Pre-Order");
+			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			this.setSize(800, 600);
+			this.setLocationRelativeTo(null); // ---Set Frame in the middle---//
+			this.setLayout(null);
+			
+			CreateLabel cl = new CreateLabel();
+			CreateButton cb = new CreateButton();
+			InsertImage ii = new InsertImage();
+			
+			JLabel Title = cl.CreateLabel("Register", 300, 30, 400,50, 40);
+			
+			JLabel Fname = cl.CreateLabel("FirstName", 150, 150, 200, 40, 18);
+			firstname = new JTextField();
+			firstname.setBounds(350,150,200,40);
+			
+			JLabel Lname = cl.CreateLabel("LastName",150 , 200, 200, 40, 18);
+			lastname = new JTextField();
+			lastname.setBounds(350,200,200,40);
+			
+			JLabel Username = cl.CreateLabel("Username", 150,250,200,40,18 );
+			user = new JTextField();
+			user.setBounds(350,250,200,40);
+			
+			JLabel Password = cl.CreateLabel("Password", 150,300,200,40, 18);
+			pass = new JPasswordField();
+			pass.setBounds(350,300,200,40);
+			
+			
+			JLabel CPassword = cl.CreateLabel("Confirm-Password", 120,350,200,40, 18);
+			Cpass = new JPasswordField();
+			Cpass.setBounds(350,350,200,40);
+			
+			
+			
+			JButton back = cb.CreateButton("Back",30,500,90,40, 12);
+			back.addActionListener(this);
+			
+			JButton reg = cb.CreateButton("Register",670,500,90,40, 12);
+			reg.addActionListener(this);
+			
+			showPassword = new JCheckBox("Show Password");
+			showPassword.setBounds(300,500,300,40);
+			showPassword.addActionListener(this);
+			
+			this.add(Title);
+			this.add(Fname);
+			this.add(firstname);
+			this.add(Lname);
+			this.add(lastname);
+			this.add(Username);
+			this.add(user);
+			this.add(Password);
+			this.add(pass);
+			this.add(CPassword);
+			this.add(Cpass);
+			this.add(back);
+			this.add(reg);
+			
+			this.add(showPassword);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == showPassword) {
+			if(showPassword.isSelected()) {
+				pass.setEchoChar((char) 0);
+				Cpass.setEchoChar((char) 0);
+			}
+			else {
+				pass.setEchoChar('*');
+				Cpass.setEchoChar('*');
+			}
+		}
+		
+		String blank[] = null;
+		if (e.getActionCommand().equals("Back")){
+			this.dispose();
+			new Login(blank).setVisible(true);
+		}
+		
+		if(e.getActionCommand().equals("Register")) {
+			
+			String username = user.getText();
+			String Ppass = new String(pass.getPassword());
+			String CCpass = new String(Cpass.getPassword());
+			
+			if (pass == Cpass) {
+				String pwdText = new String(pass.getPassword());
+				String userpass[] = {username,pwdText};
+			    this.dispose();
+			    new Login(userpass).setVisible(true);
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "Pass and Confirm-Pass\nMust be the same",
+						"ERROR !!", JOptionPane.ERROR_MESSAGE);
+			}
+			
+		}
+		
+	}
+
+}

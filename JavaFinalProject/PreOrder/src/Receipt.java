@@ -11,13 +11,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 
+import Instance.CreateButton;
+import Instance.CreateLabel;
+import Instance.CreateRadioButton;
+import Instance.InsertImage;
+
 public class Receipt extends JFrame implements ActionListener {
 
 	static JLabel line;
-	JLabel Ttitle,Spic; // ---Title / Picture---//
-	JLabel Stitle1, name, address, contract; // ---Sub Title1 (Shipping Address)---//
-	JLabel Stitle2, Iname, Icolor, Isize, Iprice, TaxPrice; // ---Sub Title2 (Items Information)---//
-	JLabel Net; // ---Price that needed to pay---//
 	JTable table;
 	JButton Ok;
 
@@ -41,92 +42,39 @@ public class Receipt extends JFrame implements ActionListener {
 			this.setContentPane(new JLabel(backgd));
 			this.setVisible(true);
 
-			Ttitle = new JLabel("Receipt");
-			Ttitle.setBounds(310, 50, 400, 40);
-			Ttitle.setFont(new Font("Mali-Bold", Font.BOLD, 38));
-			Ttitle.setForeground(Color.BLACK);
-
-			Stitle1 = new JLabel("Address For Shipping");
-			Stitle1.setBounds(80, 130, 400, 40);
-			Stitle1.setFont(new Font("Mali-Bold", Font.BOLD, 20));
-			Stitle1.setForeground(Color.BLACK);
-
-			// ----------------------------------------------------------------//
-			// ------Display name------//
-			name = new JLabel("Name : " + info[4]);
-			name.setBounds(100, 160, 400, 40);
-			name.setFont(new Font("Mali-Bold", Font.BOLD, 16));
-			name.setForeground(Color.BLACK);
-
-			// ------[Display address --> country --> zip]------//
-			address = new JLabel("Address : ");
-			address.setBounds(100, 190, 400, 40);
-			address.setFont(new Font("Mali-Bold", Font.BOLD, 16));
-			address.setForeground(Color.BLACK);
-
-			JLabel Sadd1 = new JLabel(info[5] + " " + info[8] + " " + info[6]);
-			Sadd1.setBounds(180, 190, 600, 40);
-			Sadd1.setFont(new Font("Mali-Bold", Font.BOLD, 14));
-			Sadd1.setForeground(Color.BLACK);
-
-			// ------Display Contract [mail--->phone]------//
-			contract = new JLabel("Email : " + info[7]);
-			contract.setBounds(100, 220, 400, 40);
-			contract.setFont(new Font("Mali-Bold", Font.BOLD, 16));
-			contract.setForeground(Color.BLACK);
-
-			JLabel Scon = new JLabel("Phone : " + info[9]);
-			Scon.setBounds(100, 250, 400, 40);
-			Scon.setFont(new Font("Mali-Bold", Font.BOLD, 16));
-			Scon.setForeground(Color.BLACK);
-
-			// ----------------------------------------------------------------//
-			Stitle2 = new JLabel("Items Information");
-			Stitle2.setBounds(80, 320, 400, 40);
-			Stitle2.setFont(new Font("Mali-Bold", Font.BOLD, 20));
-			Stitle2.setForeground(Color.BLACK);
-
-			Iname = new JLabel("Items Name : " + info[0]);
-			Iname.setBounds(100, 350, 400, 40);
-			Iname.setFont(new Font("Mali-Bold", Font.BOLD, 16));
-			Iname.setForeground(Color.BLACK);
-			this.add(Iname);
-
-			Icolor = new JLabel("Items Color : " + info[2]);
-			Icolor.setBounds(100, 380, 400, 40);
-			Icolor.setFont(new Font("Mali-Bold", Font.BOLD, 16));
-			Icolor.setForeground(Color.BLACK);
-			this.add(Icolor);
-
-			Isize = new JLabel("Items Size  : " + info[3]);
-			Isize.setBounds(100, 410, 400, 40);
-			Isize.setFont(new Font("Mali-Bold", Font.BOLD, 16));
-			Isize.setForeground(Color.BLACK);
-
-			Iprice = new JLabel("Items Price  :                                  " + info[1]);
-			Iprice.setBounds(100, 440, 400, 40);
-			Iprice.setFont(new Font("Mali-Bold", Font.BOLD, 16));
-			Iprice.setForeground(Color.BLACK);
-
-			// ----------------------------------------------------------------//
-			int price = Integer.parseInt(info[1].replace("B", ""));
-			TaxPrice = new JLabel(
-					"Tax 7%       :                                " + (price + (price * 7 / 100)) + " baht");
-			TaxPrice.setBounds(100, 470, 800, 40);
-			TaxPrice.setFont(new Font("Mali-Bold", Font.BOLD, 16));
-			TaxPrice.setForeground(Color.BLACK);
-
-			Net = new JLabel("Total Net Price                 " + (price + (price * 7 / 100)) + ".00 baht");
-			Net.setBounds(80, 530, 800, 40);
-			Net.setFont(new Font("Mali-Bold", Font.BOLD, 20));
-			Net.setForeground(Color.BLACK);
-
-			//-----------------------Picture---------------------
-			Spic = new JLabel("");
-			Spic.setIcon(new ImageIcon(Cshoes.getScaledInstance(180, 180, java.awt.Image.SCALE_SMOOTH)));
-			Spic.setBounds(480, 330, 180, 180);
+			CreateLabel cl = new CreateLabel();
+			CreateButton cb = new CreateButton();
+			CreateRadioButton cr = new CreateRadioButton();
+			InsertImage ii = new InsertImage();
 			
-			// ---------------------save button-------------------
+			JLabel Ttitle = cl.CreateLabel("Receipt", 310, 50, 400, 40, 38);
+
+			// -------------------Address For Shipping-------------------
+			JLabel Stitle1 = cl.CreateLabel("Address For Shipping", 80, 130, 400, 40, 20);
+			JLabel name = cl.CreateLabel("Name : " + info[4], 100, 160, 400, 40, 16);
+			JLabel address = cl.CreateLabel("Address : ", 100, 190, 400, 40, 16);
+			JLabel Sadd1 = cl.CreateLabel(info[5] + " " + info[8] + " " + info[6], 180, 190, 600, 40, 14);
+			JLabel contract = cl.CreateLabel("Email : " + info[7], 100, 220, 400, 40, 16);
+			JLabel Scon = cl.CreateLabel("Phone : " + info[9], 100, 250, 400, 40, 16);
+
+			// --------------------Items Information-----------------------
+			JLabel Stitle2 = cl.CreateLabel("Items Information", 80, 320, 400, 40, 20);
+			JLabel Iname = cl.CreateLabel("Items Name : " + info[0], 100, 350, 400, 40, 16);
+			//this.add(Iname);
+			JLabel Icolor = cl.CreateLabel("Items Color : " + info[2], 100, 380, 400, 40, 16);
+			//this.add(Icolor);
+			JLabel Isize = cl.CreateLabel("Items Size  : " + info[3], 100, 410, 400, 40, 16);
+			JLabel Iprice = cl.CreateLabel("Items Price  :                                  " + info[1], 100, 440, 400, 40, 16);
+			
+			// -------------------------Price------------------------------
+			int price = Integer.parseInt(info[1].replace("B", ""));
+			JLabel TaxPrice = cl.CreateLabel("Tax 7%       :                                " + (price + (price * 7 / 100)) + " baht",100, 470, 800, 40, 16);
+			JLabel Net = cl.CreateLabel("Total Net Price                 " + (price + (price * 7 / 100)) + ".00 baht", 80, 530, 800, 40, 20);
+			
+			//-----------------------Picture-------------------------------
+			JLabel Spic = ii.InsertImageBuffer(Cshoes, 510, 330, 150, 150);
+			
+			// ---------------------save button----------------------------
 			Ok = new JButton("Ok");
 			Ok.setBounds(620, 580, 80, 30);
 			Ok.setFocusable(false);
@@ -134,30 +82,28 @@ public class Receipt extends JFrame implements ActionListener {
 			Ok.setBackground(Color.LIGHT_GRAY);
 			Ok.setForeground(Color.black);
 			Ok.addActionListener(this);
-
-			// ----------------------------------------------------------------//
+			
+			// --------------------------------------------------------------
 			this.add(Ttitle);
-			line(230, 60, 800, 100);
-			this.add(line);
-			// -----------------------------//
+			JLabel line1 = cl.CreateLabel("- - - -x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x- - - -", 230, 60, 800, 100, 15);
+			this.add(line1);
 			this.add(Stitle1);
 			this.add(name);
 			this.add(address);
 			this.add(Sadd1);
 			this.add(contract);
 			this.add(Scon);
-			// -----------------------------//
-			line(230, 250, 800, 100);
-			this.add(line);
-			// -----------------------------//
+			line1 = cl.CreateLabel("- - - -x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x- - - -", 230, 250, 800, 100, 15);
+			this.add(line1);
 			this.add(Stitle2);
+			this.add(Iname);
+			this.add(Icolor);
 			this.add(Isize);
 			this.add(Iprice);
 			this.add(TaxPrice);
-			Sline(290, 470, 800, 100);
-			this.add(line);
+			JLabel line2 = cl.CreateLabel("-----------------------------------------------", 290, 470, 800, 100, 15);
+			this.add(line2);
 			this.add(Net);
-			// -----------------------------//
 			this.add(Spic);
 			this.add(Ok);
 		} catch (Exception e) {
@@ -165,20 +111,6 @@ public class Receipt extends JFrame implements ActionListener {
 			// print in the console class name and line number where the exception occurred
 			e.printStackTrace();
 		}
-	}
-
-	public static void line(int x, int y, int width, int height) {
-		line = new JLabel("- - - -x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x- - - -");
-		line.setBounds(x, y, width, height);
-		line.setFont(new Font("Mali-Bold", Font.BOLD, 15));
-		line.setForeground(Color.BLACK);
-	}
-
-	public static void Sline(int x, int y, int width, int height) {
-		line = new JLabel("-----------------------------------------------");
-		line.setBounds(x, y, width, height);
-		line.setFont(new Font("Mali-Bold", Font.BOLD, 10));
-		line.setForeground(Color.BLACK);
 	}
 
 	@Override

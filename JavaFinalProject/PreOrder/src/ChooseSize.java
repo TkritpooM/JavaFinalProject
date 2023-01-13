@@ -15,15 +15,20 @@ import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
 
+import Instance.CreateButton;
+import Instance.CreateLabel;
+import Instance.CreateRadioButton;
+import Instance.InsertImage;
+
 public class ChooseSize extends JFrame implements ActionListener{
-	
-	JLabel title1,shoes,Sname,price,Scolor;
-	JRadioButton S1, S2, S3, S4;
-	JButton cancel,confirm;
 	
 	//--Sent variable--//
 	public String AllInfo; //""
 	public BufferedImage Spic;
+	
+	JLabel shoes,Sname,price,Scolor;
+	JRadioButton S1, S2, S3, S4;
+	JButton cancel,confirm;
 	
 	public ChooseSize (String modelcode,BufferedImage Cshoes,String Ainfo) {
 		
@@ -38,19 +43,17 @@ public class ChooseSize extends JFrame implements ActionListener{
 			this.setTitle("Shoes Pre-Order");
 			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			this.setSize(800, 600);
-			this.setLocation(350, 100);
 			this.setLocationRelativeTo(null);
 			this.setLayout(null);
 			
-			title1 = new JLabel("Choose Your Size");
-			title1.setBounds(200,25,400,50);
-			title1.setFont(new Font("Mali-Bold",Font.BOLD,40));
-			title1.setForeground(Color.BLACK);
-			title1.setBorder(new EmptyBorder(0,10,0,0));
+			CreateLabel cl = new CreateLabel();
+			CreateButton cb = new CreateButton();
+			CreateRadioButton cr = new CreateRadioButton();
+			InsertImage ii = new InsertImage();
 			
-			shoes = new JLabel("");
-			shoes.setIcon(new ImageIcon(Cshoes.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH)));
-			shoes.setBounds(280, 100, 200, 200);
+			JLabel title1 = cl.CreateLabel("Choose Your Size", 200,25,400,50, 40);
+			
+			shoes = ii.InsertImageBuffer(Cshoes, 280, 100, 200, 200);
 			
 			confrm = ImageIO.read(new File("img/checked.png"));
 			confirm = new JButton("Confirm");
@@ -58,25 +61,10 @@ public class ChooseSize extends JFrame implements ActionListener{
 			confirm.setBounds(660, 500, 100, 40);
 			confirm.addActionListener(this);
 			
-			S1 = new JRadioButton(" 40");
-			S1.setFont(new Font("Mali-Bold", Font.BOLD, 20));
-			S1.setFocusable(false);
-			S1.setBounds(340, 320, 300, 50);
-
-			S2 = new JRadioButton(" 41");
-			S2.setFont(new Font("Mali-Bold", Font.BOLD, 20));
-			S2.setFocusable(false);
-			S2.setBounds(340, 360, 300, 50);
-
-			S3 = new JRadioButton(" 42");
-			S3.setFont(new Font("Mali-Bold", Font.BOLD, 20));
-			S3.setFocusable(false);
-			S3.setBounds(340, 400, 300, 50);
-
-			S4 = new JRadioButton(" 43");
-			S4.setFont(new Font("Mali-Bold", Font.BOLD, 20));
-			S4.setFocusable(false);
-			S4.setBounds(340, 440, 300, 50);
+			S1 = cr.CreateRadioButton(" 40", 340, 320, 300, 50, 20);
+			S2 = cr.CreateRadioButton(" 41", 340, 360, 300, 50, 20);
+			S3 = cr.CreateRadioButton(" 42", 340, 400, 300, 50, 20);
+			S4 = cr.CreateRadioButton(" 43", 340, 440, 300, 50, 20);
 			
 			ButtonGroup bg = new ButtonGroup();
 			bg.add(S1);

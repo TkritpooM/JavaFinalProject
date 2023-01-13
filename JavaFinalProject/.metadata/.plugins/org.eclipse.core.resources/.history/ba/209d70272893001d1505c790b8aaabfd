@@ -1,0 +1,135 @@
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+
+import javax.imageio.ImageIO;
+import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
+import javax.swing.border.EmptyBorder;
+
+import Instance.*;
+
+public class Show extends JFrame implements ActionListener {
+
+	JLabel title1, shoes1, shoes2, shoes3, shoes4; // ใส่รูปรองเท้า
+	JRadioButton blackC, blueC, orangeC, redC; // ปุ่มเลือกรองเท้า
+	JButton confirm;
+
+	public Show() {
+		
+		BufferedImage icon, blackS, blueS, orangeS, redS, info;
+		
+		try {
+			icon = ImageIO.read(new File("img/icon.jpg"));
+			this.setIconImage(icon);
+			this.setTitle("Shoes Pre-Order");
+			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			this.setSize(800, 600);
+			this.setLocationRelativeTo(null);
+			this.setLayout(null);
+
+			CreateLabel cl = new CreateLabel();
+			CreateButton cb = new CreateButton();
+			CreateRadioButton cr = new CreateRadioButton();
+			InsertImage ii = new InsertImage();
+			
+			JLabel title1 = cl.CreateLabel("Shoes List", 290, 25, 400, 50, 40);
+			
+			JRadioButton blackC = cr.CreateRadioButton("Dunk low panda", 160, 250, 300, 50, 18);
+			JLabel shoes1 = ii.InsertImage("img/black.png", 150, 100, 150, 150);
+
+			blueC = new JRadioButton("Dunk low blue");
+			blueC.setFont(new Font("Mali-Bold", Font.BOLD, 18));
+			blueC.setFocusable(false);
+			blueC.setBounds(480, 250, 300, 50);
+			JLabel shoes2 = ii.InsertImage("img/blue.png", 470, 100, 150, 150);
+
+			orangeC = new JRadioButton("Air Jordan 1mid");
+			orangeC.setFont(new Font("Mali-Bold", Font.BOLD, 18));
+			orangeC.setFocusable(false);
+			orangeC.setBounds(160, 450, 300, 50);
+			JLabel shoes3 = ii.InsertImage("img/orange.png", 150, 300, 150, 150);
+
+			redC = new JRadioButton("Jordan 1 Chicago");
+			redC.setFont(new Font("Mali-Bold", Font.BOLD, 18));
+			redC.setFocusable(false);
+			redC.setBounds(480, 450, 300, 50);
+			JLabel shoes4 = ii.InsertImage("img/red.png", 470, 300, 150, 150);
+
+			info = ImageIO.read(new File("img/choose.png"));
+			confirm = new JButton("Info");
+			confirm.setIcon(new ImageIcon(info.getScaledInstance(15, 15, java.awt.Image.SCALE_SMOOTH)));
+			confirm.setBounds(660, 500, 100, 40);
+			confirm.addActionListener(this);
+
+			ButtonGroup bg = new ButtonGroup();
+			bg.add(blackC);
+			bg.add(blueC);
+			bg.add(orangeC);
+			bg.add(redC);
+
+			this.add(title1);
+			this.add(blackC);
+			this.add(shoes1);
+			this.add(blueC);
+			this.add(shoes2);
+			this.add(orangeC);
+			this.add(shoes3);
+			this.add(redC);
+			this.add(shoes4);
+			this.add(confirm);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		try {
+			
+			String information = "";
+			BufferedImage ChoosenShoes = null;
+			BufferedImage blackS = ImageIO.read(new File("img/black.png"));
+			BufferedImage blueS = ImageIO.read(new File("img/blue.png"));
+			BufferedImage orangeS = ImageIO.read(new File("img/orange.png"));
+			BufferedImage redS = ImageIO.read(new File("img/red.png"));
+			
+			if (e.getActionCommand().equals("Info")) {
+				if ((blackC.isSelected() || blueC.isSelected() || orangeC.isSelected() || redC.isSelected())) {
+					if (blackC.isSelected()) {
+						information = "Dunk low panda,3700B,Black";
+						ChoosenShoes = blackS;
+					}
+					if (blueC.isSelected()) {
+						information = "Dunk low blue,9200B,Blue";
+						ChoosenShoes = blueS;
+					}
+					if (orangeC.isSelected()) {
+						information = "Air Jordan 1mid,5200B,Orange";
+						ChoosenShoes = orangeS;
+					}
+					if (redC.isSelected()) {
+						information = "Jordan 1 Chicago,5200B,Red";
+						ChoosenShoes = redS;
+					}
+					this.dispose();
+					new ShowInformation(information,ChoosenShoes).setVisible(true);
+				} else if (!(blackC.isSelected() || blueC.isSelected() || orangeC.isSelected() || redC.isSelected())) {
+					JOptionPane.showMessageDialog(null, "You must select 1 types of shoes", "ERROR !!",
+							JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		} catch (Exception c) {
+			c.printStackTrace(); // if error
+		}
+
+	}
+}

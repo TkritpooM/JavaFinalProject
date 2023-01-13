@@ -14,18 +14,24 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import Instance.CreateButton;
+import Instance.CreateLabel;
+import Instance.CreateRadioButton;
+import Instance.InsertImage;
+
 public class Address extends JFrame implements ActionListener {
 
-	//--Sent variable--//
+	//---Sent variable---//
 	public String AllInfo; //""
 	public BufferedImage Spic;
 	
 	JTextField username, address, zip, email, phone;
 	
-	JComboBox country;  //---Choice for choosing---//
+	//---Choice for choosing---//
+	JComboBox country;  
 	String[] _country = { "", "Thailand", "Other..." };
 	
-	JLabel label_username, label_address, label_zip, label_email, label_country, label_phone, message, title;
+	//---Save---//
 	JButton save;
 
 	public Address(String Ainfo,BufferedImage Cshoes) {
@@ -44,57 +50,41 @@ public class Address extends JFrame implements ActionListener {
 			this.setLocationRelativeTo(null); //---Set Frame in the middle---//
 			this.setLayout(null);
 			
+			CreateLabel cl = new CreateLabel();
+			CreateButton cb = new CreateButton();
+			CreateRadioButton cr = new CreateRadioButton();
+			InsertImage ii = new InsertImage();
+			
 			// ----------------Topic-----------------------------
-			title = new JLabel("Address");
-			title.setBounds(300, 20, 400, 40);
-			title.setFont(new Font("Mali-Bold", Font.BOLD, 38));
-			title.setForeground(Color.BLACK);
+			JLabel title = cl.CreateLabel("Address", 300, 20, 400, 40, 38);
 
 			// ------------------Name----------------------------
-			label_username = new JLabel("Name-Surname");
-			label_username.setBounds(20, 70, 250, 40);
-			label_username.setFont(new Font("Mali-Bold", Font.BOLD, 15));
-			label_username.setForeground(Color.BLACK);
+			JLabel label_username = cl.CreateLabel("Name-Surname", 20, 70, 250, 40, 15);
 			username = new JTextField();
 			username.setBounds(19, 110, 700, 30);
 
 			// ---------------Address----------------------------
-			label_address = new JLabel("Address");
-			label_address.setBounds(20, 140, 250, 40);
-			label_address.setFont(new Font("Mali-Bold", Font.BOLD, 15));
-			label_address.setForeground(Color.BLACK);
+			JLabel label_address = cl.CreateLabel("Address", 20, 140, 250, 40, 15);
 			address = new JTextField();
 			address.setBounds(19, 180, 700, 30);
 
 			// ------------ZIP/Postal Code-----------------------
-			label_zip = new JLabel("Zip/Postal Code");
-			label_zip.setBounds(20, 210, 250, 40);
-			label_zip.setFont(new Font("Mali-Bold", Font.BOLD, 15));
-			label_zip.setForeground(Color.BLACK);
+			JLabel label_zip = cl.CreateLabel("Zip/Postal Code", 20, 210, 250, 40, 15);
 			zip = new JTextField();
 			zip.setBounds(19, 250, 700, 30);
 
 			// ----------email-----------------------------------
-			label_email = new JLabel("Email");
-			label_email.setBounds(20, 280, 250, 40);
-			label_email.setFont(new Font("Mali-Bold", Font.BOLD, 15));
-			label_email.setForeground(Color.BLACK);
+			JLabel label_email = cl.CreateLabel("Email", 20, 280, 250, 40, 15);
 			email = new JTextField();
 			email.setBounds(19, 320, 700, 30);
 
 			// ------------country-------------------------------
-			label_country = new JLabel("Country");
-			label_country.setBounds(20, 350, 250, 40);
-			label_country.setFont(new Font("Mali-Bold", Font.BOLD, 15));
-			label_country.setForeground(Color.BLACK);
+			JLabel label_country = cl.CreateLabel("Country", 20, 350, 250, 40, 15);
 			country = new JComboBox(_country);
 			country.setBounds(19, 390, 700, 30);
 
 			// --------------phone-------------------------------
-			label_phone = new JLabel("Phone");
-			label_phone.setBounds(20, 420, 250, 40);
-			label_phone.setFont(new Font("Mali-Bold", Font.BOLD, 15));
-			label_phone.setForeground(Color.BLACK);
+			JLabel label_phone = cl.CreateLabel("Phone", 20, 420, 250, 40, 15);
 			phone = new JTextField();
 			phone.setBounds(19, 460, 700, 30);
 

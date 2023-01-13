@@ -1,0 +1,24 @@
+package Instance;
+
+import java.awt.image.BufferedImage;
+import java.io.File;
+
+import javax.imageio.ImageIO;
+import javax.swing.JFrame;
+
+public class CreateJFrame extends JFrame {
+
+	public static void CreateJFrame() {
+		try {
+			BufferedImage icon = ImageIO.read(new File("img/icon.jpg"));
+			setIconImage(icon);
+			setTitle("Shoes Pre-Order");
+			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			setSize(800, 600);
+			setLocationRelativeTo(null); // ---Set Frame in the middle---//
+			setLayout(null);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}

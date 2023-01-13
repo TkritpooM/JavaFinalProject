@@ -2,7 +2,6 @@ import javax.swing.JFrame;
 
 public class TestPre extends JFrame{
 	public static void main(String[] args) {
-		String blank[] = {"",""}; //blank username-password
-		new Login(blank).setVisible(true);
+		new HomePage().setVisible(true);
 	}
 }

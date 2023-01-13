@@ -12,24 +12,30 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
 
+import Instance.CreateButton;
+import Instance.CreateLabel;
+import Instance.CreateRadioButton;
+import Instance.InsertImage;
+
 public class ShowInformation extends JFrame implements ActionListener {
 
 	//--Sent variable--//
 	public String AllInfo; //""
+	public String ID;
+	public BufferedImage Spic;
 	
 	JLabel title1,shoes,Sname,price,Scolor;
 	JButton cancel,confirm;
-	public String ID;
-	public BufferedImage Spic;
+	
 	
 	public ShowInformation(String modelcode,BufferedImage Cshoes) {
 		
 		AllInfo = modelcode; //"Jordan 1 Chicago,5200B,Red"
 		
 		BufferedImage icon,cel,confrm;
-		
-		String Sinfo[] = modelcode.split(",");
+
 		//put name/pic into variable and sent to other Class
+		String Sinfo[] = modelcode.split(",");
 		ID = Sinfo[0];
 		Spic = Cshoes;
 		
@@ -39,38 +45,23 @@ public class ShowInformation extends JFrame implements ActionListener {
 			this.setTitle("Shoes Pre-Order");
 			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			this.setSize(800, 600);
-			this.setLocation(350, 100);
-			//this.getContentPane().setBackground(Color.GRAY);
 			this.setLocationRelativeTo(null);
 			this.setLayout(null);
 			
-			title1 = new JLabel("Shoes Information");
-			title1.setBounds(200,25,400,50);
-			title1.setFont(new Font("Mali-Bold",Font.BOLD,40));
-			title1.setForeground(Color.BLACK);
-			title1.setBorder(new EmptyBorder(0,10,0,0));
+			CreateLabel cl = new CreateLabel();
+			CreateButton cb = new CreateButton();
+			CreateRadioButton cr = new CreateRadioButton();
+			InsertImage ii = new InsertImage();
 			
-			shoes = new JLabel("");
-			shoes.setIcon(new ImageIcon(Cshoes.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH)));
-			shoes.setBounds(280, 100, 200, 200);
+			JLabel title1 = cl.CreateLabel("Shoes Information", 200,25,400,50, 40);
 			
-			Sname = new JLabel("Model name : " + Sinfo[0] + " (Nike)");
-			Sname.setBounds(150,160,400,400);
-			Sname.setFont(new Font("Mali-Bold",Font.BOLD,20));
-			Sname.setForeground(Color.BLACK);
-			Sname.setBorder(new EmptyBorder(0,10,0,0));
+			shoes = ii.InsertImageBuffer(Cshoes, 280, 100, 200, 200);
 			
-			price = new JLabel("Price            : " + Sinfo[1]);
-			price.setBounds(150,200,400,400);
-			price.setFont(new Font("Mali-Bold",Font.BOLD,20));
-			price.setForeground(Color.BLACK);
-			price.setBorder(new EmptyBorder(0,10,0,0));
+			Sname = cl.CreateLabel("Model name : " + Sinfo[0] + " (Nike)", 150,160,400,400, 20);
 			
-			Scolor = new JLabel("Color            : " + Sinfo[2]);
-			Scolor.setBounds(150,240,400,400);
-			Scolor.setFont(new Font("Mali-Bold",Font.BOLD,20));
-			Scolor.setForeground(Color.BLACK);
-			Scolor.setBorder(new EmptyBorder(0,10,0,0));
+			price = cl.CreateLabel("Price            : " + Sinfo[1], 150,200,400,400, 20);
+			
+			Scolor = cl.CreateLabel("Color            : " + Sinfo[2], 150,240,400,400, 20);
 			
 			cel = ImageIO.read(new File("img/cancel.png"));
 			cancel = new JButton("Cancel");

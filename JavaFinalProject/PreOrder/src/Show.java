@@ -13,17 +13,17 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
-import javax.swing.border.EmptyBorder;
+
+import Instance.*;
 
 public class Show extends JFrame implements ActionListener {
 
-	JLabel title1, shoes1, shoes2, shoes3, shoes4; // ใส่รูปรองเท้า
 	JRadioButton blackC, blueC, orangeC, redC; // ปุ่มเลือกรองเท้า
 	JButton confirm;
 
 	public Show() {
 		
-		BufferedImage icon, blackS, blueS, orangeS, redS, info;
+		BufferedImage icon,info;
 		
 		try {
 			icon = ImageIO.read(new File("img/icon.jpg"));
@@ -31,58 +31,31 @@ public class Show extends JFrame implements ActionListener {
 			this.setTitle("Shoes Pre-Order");
 			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			this.setSize(800, 600);
-			this.setLocation(350, 100);
-			// this.getContentPane().setBackground(Color.WHITE);
 			this.setLocationRelativeTo(null);
 			this.setLayout(null);
 
-			title1 = new JLabel("Shoes List");
-			title1.setBounds(290, 25, 400, 50);
-			title1.setFont(new Font("Mali-Bold", Font.BOLD, 40));
-			title1.setForeground(Color.BLACK);
-			title1.setBorder(new EmptyBorder(0, 10, 0, 0));
+			CreateLabel cl = new CreateLabel();
+			CreateButton cb = new CreateButton();
+			CreateRadioButton cr = new CreateRadioButton();
+			InsertImage ii = new InsertImage();
+			
+			JLabel title1 = cl.CreateLabel("Shoes List", 290, 25, 400, 50, 40);
+			
+			blackC = cr.CreateRadioButton("Dunk low panda", 160, 250, 300, 50, 18);
+			JLabel shoes1 = ii.InsertImage("img/black.png", 150, 100, 150, 150);
 
-			blackS = ImageIO.read(new File("img/black.png"));
-			blueS = ImageIO.read(new File("img/blue.png"));
-			orangeS = ImageIO.read(new File("img/orange.png"));
-			redS = ImageIO.read(new File("img/red.png"));
+			blueC = cr.CreateRadioButton("Dunk low blue", 480, 250, 300, 50, 18);
+			JLabel shoes2 = ii.InsertImage("img/blue.png", 470, 100, 150, 150);
+
+			orangeC = cr.CreateRadioButton("Air Jordan 1mid", 160, 450, 300, 50, 18);
+			JLabel shoes3 = ii.InsertImage("img/orange.png", 150, 300, 150, 150);
+
+			redC = cr.CreateRadioButton("Jordan 1 Chicago", 480, 450, 300, 50, 18);
+			JLabel shoes4 = ii.InsertImage("img/red.png", 470, 300, 150, 150);
+
 			info = ImageIO.read(new File("img/choose.png"));
-
-			blackC = new JRadioButton("Dunk low panda");
-			blackC.setFont(new Font("Mali-Bold", Font.BOLD, 18));
-			blackC.setFocusable(false);
-			blackC.setBounds(160, 250, 300, 50);
-			shoes1 = new JLabel("");
-			shoes1.setIcon(new ImageIcon(blackS.getScaledInstance(150, 150, java.awt.Image.SCALE_SMOOTH)));
-			shoes1.setBounds(150, 100, 150, 150);
-
-			blueC = new JRadioButton("Dunk low blue");
-			blueC.setFont(new Font("Mali-Bold", Font.BOLD, 18));
-			blueC.setFocusable(false);
-			blueC.setBounds(480, 250, 300, 50);
-			shoes2 = new JLabel("");
-			shoes2.setIcon(new ImageIcon(blueS.getScaledInstance(150, 150, java.awt.Image.SCALE_SMOOTH)));
-			shoes2.setBounds(470, 100, 150, 150);
-
-			orangeC = new JRadioButton("Air Jordan 1mid");
-			orangeC.setFont(new Font("Mali-Bold", Font.BOLD, 18));
-			orangeC.setFocusable(false);
-			orangeC.setBounds(160, 450, 300, 50);
-			shoes3 = new JLabel("");
-			shoes3.setIcon(new ImageIcon(orangeS.getScaledInstance(150, 150, java.awt.Image.SCALE_SMOOTH)));
-			shoes3.setBounds(150, 300, 150, 150);
-
-			redC = new JRadioButton("Jordan 1 Chicago");
-			redC.setFont(new Font("Mali-Bold", Font.BOLD, 18));
-			redC.setFocusable(false);
-			redC.setBounds(480, 450, 300, 50);
-			shoes4 = new JLabel("");
-			shoes4.setIcon(new ImageIcon(redS.getScaledInstance(150, 150, java.awt.Image.SCALE_SMOOTH)));
-			shoes4.setBounds(470, 300, 150, 150);
-
-			confirm = new JButton("Info");
+			JButton confirm = cb.CreateButton("Info",660, 500, 100, 40, 10);
 			confirm.setIcon(new ImageIcon(info.getScaledInstance(15, 15, java.awt.Image.SCALE_SMOOTH)));
-			confirm.setBounds(660, 500, 100, 40);
 			confirm.addActionListener(this);
 
 			ButtonGroup bg = new ButtonGroup();

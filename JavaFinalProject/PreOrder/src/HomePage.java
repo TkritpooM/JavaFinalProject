@@ -12,15 +12,15 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import Instance.CreateLabel;
+import Instance.InsertImage;
 
 public class HomePage extends JFrame implements ActionListener{
 
-	JLabel shoesicon,title1,title2;
 	JButton enter,exit;
 	
 	public HomePage() {
 		
-		BufferedImage icon = null,shoes = null,enterr = null,exitt = null;
+		BufferedImage icon = null,enterr = null,exitt = null;
 		
 		try {
 			icon = ImageIO.read(new File("img/icon.jpg"));
@@ -28,28 +28,23 @@ public class HomePage extends JFrame implements ActionListener{
 			this.setTitle("Shoes Pre-Order");
 			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			this.setSize(800, 600);
-			this.setLocation(350, 100);
-			//this.getContentPane().setBackground(Color.GRAY);
 			this.setLocationRelativeTo(null);
 			this.setLayout(null);
 			
 			CreateLabel cl = new CreateLabel();
-			title1 = cl.CreateLabel("Pre-Order", 290, 50, 400,50, 40);
-			title2 = cl.CreateLabel("Sneaker", 300,100,400,50, 40);
+			JLabel title1 = cl.CreateLabel("Pre-Order", 290, 50, 400,50, 40);
+			JLabel title2 = cl.CreateLabel("Sneaker", 300,100,400,50, 40);
 			
-			shoes = ImageIO.read(new File("img/222222.png"));
+			InsertImage ii = new InsertImage();
+			JLabel shoesicon = ii.InsertImage("img/222222.png", 200,60,400,400);
+			
 			enterr = ImageIO.read(new File("img/enter.png"));
-			exitt = ImageIO.read(new File("img/logout.png"));
-			
-			shoesicon = new JLabel("");
-			shoesicon.setIcon(new ImageIcon(shoes.getScaledInstance(400, 400, java.awt.Image.SCALE_SMOOTH)));
-			shoesicon.setBounds(200,60,400,400);
-			
 			enter = new JButton("Enter");
 			enter.setIcon(new ImageIcon(enterr.getScaledInstance(15, 15, java.awt.Image.SCALE_SMOOTH)));
 			enter.setBounds(200,450,90,40);
 			enter.addActionListener(this);
 			
+			exitt = ImageIO.read(new File("img/logout.png"));
 			exit = new JButton("Exit");
 			exit.setIcon(new ImageIcon(exitt.getScaledInstance(15, 15, java.awt.Image.SCALE_SMOOTH)));
 			exit.setBounds(500,450,90,40);
@@ -73,7 +68,8 @@ public class HomePage extends JFrame implements ActionListener{
 		}
 		if (e.getActionCommand().equals("Enter")) {
 			this.dispose();
-			new Show().setVisible(true);
+			String blank[] = {"",""}; //blank username-password
+			new Login(blank).setVisible(true);
 		}
 	}
 }

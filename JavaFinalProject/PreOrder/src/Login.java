@@ -95,7 +95,7 @@ public class Login extends JFrame implements ActionListener{
 			else {
 			    if (userText.equals(CheckuserP[0]) && pwdText.equals(CheckuserP[1]) ) { //userText.equals(CheckuserP) && pwdText.equals(CheckuserP[1]) 
 					this.dispose();
-					new HomePage().setVisible(true);
+					new Show().setVisible(true);
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Username or Password is incorrect", "ERROR !!",

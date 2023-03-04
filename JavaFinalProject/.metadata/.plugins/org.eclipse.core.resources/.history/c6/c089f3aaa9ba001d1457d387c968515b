@@ -25,7 +25,7 @@ public class Login extends JFrame implements ActionListener {
 	JPasswordField pass;
 	JButton sign, regis_btn;
 	JCheckBox showPassword;
-	public String[] CheckuserP = { "", "" }; /* Remember Pass in Storage */
+	public String[] CheckuserP = { "", "" }; // Remember Pass in Storage
 
 	public Login() {
 		try {
@@ -34,7 +34,7 @@ public class Login extends JFrame implements ActionListener {
 			this.setTitle("Shoes Pre-Order");
 			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			this.setSize(800, 600);
-			this.setLocationRelativeTo(null); /* Set Frame in the middle */
+			this.setLocationRelativeTo(null); // ---Set Frame in the middle---//
 			this.setLayout(null);
 
 			CreateLabel cl = new CreateLabel();
@@ -75,10 +75,10 @@ public class Login extends JFrame implements ActionListener {
 			// -----------------------//
 			this.add(showPassword);
 			this.add(sign);
-			this.add(regis_btn);
+			this.add(regis_btn);;
 		} catch (Exception e) {
-			/* use to detected error from image search --> print in console */
-			/* print in the console class name and line number where the exception occurred */
+			// use to detected error from image search --> print in console
+			// print in the console class name and line number where the exception occurred
 			e.printStackTrace();
 		}
 	}
@@ -101,7 +101,7 @@ public class Login extends JFrame implements ActionListener {
 						String userpass[] = temp.split("\t");
 						CheckuserP[0] = userpass[0];
 						CheckuserP[1] = userpass[1];
-						/* Check user&pass That are same or not */
+						/*  Check user&pass That are same or not */
 						if (userText.equals(CheckuserP[0]) && pwdText.equals(CheckuserP[1])) {
 							checkUP = true;
 							this.dispose();

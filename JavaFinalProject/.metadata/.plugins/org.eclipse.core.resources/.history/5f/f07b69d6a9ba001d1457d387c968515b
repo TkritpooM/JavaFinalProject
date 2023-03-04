@@ -116,7 +116,7 @@ public class Show extends JFrame implements ActionListener {
 				}
 			}
 		} catch (Exception c) {
-			c.printStackTrace(); /* if Error --> class name/method/line that error */
+			c.printStackTrace(); /* if Error --> will show package */
 		}
 
 	}

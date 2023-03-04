@@ -126,9 +126,7 @@ public class Register extends JFrame implements ActionListener {
 					try {
 						/* If don't have file --> Create new file automatic */
 						/* Using [Write File with PrintWriter] */
-						/* if(boolean == true) --> insert new data in file after the previous data. */
-						/* if(boolean == false) --> re-write file. */
-						PrintWriter write = new PrintWriter(new FileWriter("User-Pass.txt", true));
+						PrintWriter write = new PrintWriter(new FileWriter("User-Pass.txt", false));
 						String pwdText = new String(pass.getPassword());
 						write.println(username + "\t" + pwdText);
 						write.close();

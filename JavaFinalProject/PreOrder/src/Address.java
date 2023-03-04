@@ -193,7 +193,6 @@ public class Address extends JFrame implements ActionListener {
 					new Receipt(AllInfo,Spic).setVisible(true);
 				}
 			}
-
 		}
 	}
 }

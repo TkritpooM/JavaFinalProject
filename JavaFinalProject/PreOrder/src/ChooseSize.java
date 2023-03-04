@@ -32,7 +32,7 @@ public class ChooseSize extends JFrame implements ActionListener{
 	
 	public ChooseSize (String modelcode,BufferedImage Cshoes,String Ainfo) {
 		
-		AllInfo = Ainfo; //"Jordan 1 Chicago,5200B,Red"
+		AllInfo = Ainfo; /* "Jordan 1 Chicago,5200B,Red" */
 		Spic = Cshoes;
 		
 		BufferedImage icon,confrm;
@@ -53,7 +53,7 @@ public class ChooseSize extends JFrame implements ActionListener{
 			
 			JLabel title1 = cl.CreateLabel("Choose Your Size", 200,25,400,50, 40);
 			
-			shoes = ii.InsertImageBuffer(Cshoes, 280, 100, 200, 200);
+			shoes = ii.InsertImage(Cshoes, 280, 100, 200, 200);
 			
 			confrm = ImageIO.read(new File("img/checked.png"));
 			confirm = new JButton("Confirm");
@@ -86,7 +86,7 @@ public class ChooseSize extends JFrame implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		//empty button command
+		/* empty button command */
 		String size = null;
 		
 		if (e.getActionCommand().equals("Confirm")) {
@@ -107,7 +107,7 @@ public class ChooseSize extends JFrame implements ActionListener{
 				if (S4.isSelected()) {
 					size = "43";
 				}
-				AllInfo += "," + size;  //"Jordan 1 Chicago,5200B,Red,40" 
+				AllInfo += "," + size;  /* "Jordan 1 Chicago,5200B,Red,40" */
 				this.dispose();
 				new Address(AllInfo,Spic).setVisible(true);
 			}

@@ -19,7 +19,7 @@ import Instance.InsertImage;
 
 public class ShowInformation extends JFrame implements ActionListener {
 
-	//--Sent variable--//
+	/* Sent variable */
 	public String AllInfo; //""
 	public String ID;
 	public BufferedImage Spic;
@@ -27,14 +27,13 @@ public class ShowInformation extends JFrame implements ActionListener {
 	JLabel title1,shoes,Sname,price,Scolor;
 	JButton cancel,confirm;
 	
-	
 	public ShowInformation(String modelcode,BufferedImage Cshoes) {
 		
-		AllInfo = modelcode; //"Jordan 1 Chicago,5200B,Red"
+		AllInfo = modelcode; /* "Jordan 1 Chicago,5200B,Red" */
 		
 		BufferedImage icon,cel,confrm;
 
-		//put name/pic into variable and sent to other Class
+		/* Put name/picture into variable and sent to other Class */
 		String Sinfo[] = modelcode.split(",");
 		ID = Sinfo[0];
 		Spic = Cshoes;
@@ -55,7 +54,7 @@ public class ShowInformation extends JFrame implements ActionListener {
 			
 			JLabel title1 = cl.CreateLabel("Shoes Information", 200,25,400,50, 40);
 			
-			shoes = ii.InsertImageBuffer(Cshoes, 280, 100, 200, 200);
+			shoes = ii.InsertImage(Cshoes, 280, 100, 200, 200);
 			
 			Sname = cl.CreateLabel("Model name : " + Sinfo[0] + " (Nike)", 150,160,400,400, 20);
 			

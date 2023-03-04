@@ -72,7 +72,7 @@ public class Receipt extends JFrame implements ActionListener {
 			JLabel Net = cl.CreateLabel("Total Net Price                 " + (price + (price * 7 / 100)) + ".00 baht", 80, 530, 800, 40, 20);
 			
 			//-----------------------Picture-------------------------------
-			JLabel Spic = ii.InsertImageBuffer(Cshoes, 510, 330, 150, 150);
+			JLabel Spic = ii.InsertImage(Cshoes, 510, 330, 150, 150);
 			
 			// ---------------------save button----------------------------
 			Ok = new JButton("Ok");

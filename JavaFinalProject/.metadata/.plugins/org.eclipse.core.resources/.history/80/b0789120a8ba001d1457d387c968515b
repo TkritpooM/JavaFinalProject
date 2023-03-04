@@ -34,7 +34,7 @@ public class Register extends JFrame implements ActionListener {
 			this.setTitle("Shoes Pre-Order");
 			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			this.setSize(800, 600);
-			this.setLocationRelativeTo(null); /* Set Frame in the middle */
+			this.setLocationRelativeTo(null); // ---Set Frame in the middle---//
 			this.setLayout(null);
 
 			CreateLabel cl = new CreateLabel();
@@ -94,7 +94,7 @@ public class Register extends JFrame implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e){
 
 		String fname = firstname.getText();
 		String lname = lastname.getText();
@@ -112,29 +112,31 @@ public class Register extends JFrame implements ActionListener {
 			}
 		}
 
+		//String blank[] = {"",""};
 		if (e.getActionCommand().equals("Back")) {
 			this.dispose();
 			new Login().setVisible(true);
 		}
-
+		
 		if (e.getActionCommand().equals("Sign-Up")) {
 			if (fname.length() == 0 || lname.length() == 0 || username.length() == 0 || Ppass.length() == 0
 					|| CCpass.length() == 0) {
 				JOptionPane.showMessageDialog(null, "Please fill all blank !!!", "ERROR !!", JOptionPane.ERROR_MESSAGE);
 			} else {
-				if (Arrays.equals(pass.getPassword(), Cpass.getPassword())) {
+				if (Arrays.equals(pass.getPassword(),Cpass.getPassword())) {
 					try {
 						/* If don't have file --> Create new file automatic */
 						/* Using [Write File with PrintWriter] */
-						/* if(boolean == true) --> insert new data in file after the previous data. */
-						/* if(boolean == false) --> re-write file. */
-						PrintWriter write = new PrintWriter(new FileWriter("User-Pass.txt", true));
+						PrintWriter write = new PrintWriter(new FileWriter("User-Pass.txt", false));
 						String pwdText = new String(pass.getPassword());
-						write.println(username + "\t" + pwdText);
+						write.println(username+"\t"+pwdText);
 						write.close();
+						
+						//String userpass[] = { username, pwdText};
 						this.dispose();
 						new Login().setVisible(true);
-					} catch (Exception t) {
+						
+					}catch (Exception t) {
 						t.printStackTrace();
 					}
 				} else {

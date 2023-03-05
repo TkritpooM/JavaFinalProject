@@ -35,11 +35,8 @@ public class ChooseSize extends JFrame implements ActionListener{
 		AllInfo = Ainfo; /* "Jordan 1 Chicago,5200B,Red" */
 		Spic = Cshoes;
 		
-		BufferedImage icon,confrm;
-		
 		try {
-			icon = ImageIO.read(new File("img/icon.jpg"));
-		    this.setIconImage(icon);
+		    this.setIconImage(ImageIO.read(ChooseSize.class.getResource("icon.jpg")));
 			this.setTitle("Shoes Pre-Order");
 			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			this.setSize(800, 600);
@@ -55,10 +52,7 @@ public class ChooseSize extends JFrame implements ActionListener{
 			
 			shoes = ii.InsertImage(Cshoes, 280, 100, 200, 200);
 			
-			confrm = ImageIO.read(new File("img/checked.png"));
-			confirm = new JButton("Confirm");
-			confirm.setIcon(new ImageIcon(confrm.getScaledInstance(15, 15, java.awt.Image.SCALE_SMOOTH)));
-			confirm.setBounds(660, 500, 100, 40);
+			confirm = cb.CreateButton(ImageIO.read(HomePage.class.getResource("checked.png")), "Confirm", 660, 500, 100, 40, 15, 15);
 			confirm.addActionListener(this);
 			
 			S1 = cr.CreateRadioButton(" 40", 340, 320, 300, 50, 20);

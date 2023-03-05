@@ -25,18 +25,17 @@ public class Receipt extends JFrame implements ActionListener {
 	public Receipt(String Ainfo,BufferedImage Cshoes) {
 
 		String info[] = Ainfo.split(","); // "Jordan 1 Chicago,5200B,Red,40,name,address,zip,mail,country,phone"
-		BufferedImage icon;
 
 		try {
-			icon = ImageIO.read(new File("img/icon.jpg"));
-			this.setIconImage(icon);
+			this.setIconImage(ImageIO.read(Receipt.class.getResource("icon.jpg")));
 			this.setTitle("Shoes Pre-Order");
 			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			this.setSize(780, 700);
 			this.setLocationRelativeTo(null); // ---Set Frame in the middle---//
 			this.setLayout(null);
 
-			ImageIcon backgd = new ImageIcon("img\\ReceiptBackGd.jpg");
+			//ImageIcon backgd = new ImageIcon("img\\ReceiptBackGd.jpg");
+			ImageIcon backgd = new ImageIcon(getClass().getClassLoader().getResource("ReceiptBackGd.jpg"));
 			Image back = backgd.getImage().getScaledInstance(800, 665, java.awt.Image.SCALE_SMOOTH);
 			backgd = new ImageIcon(back);
 			this.setContentPane(new JLabel(backgd));
@@ -60,9 +59,7 @@ public class Receipt extends JFrame implements ActionListener {
 			// --------------------Items Information-----------------------
 			JLabel Stitle2 = cl.CreateLabel("Items Information", 80, 320, 400, 40, 20);
 			JLabel Iname = cl.CreateLabel("Items Name : " + info[0], 100, 350, 400, 40, 16);
-			//this.add(Iname);
 			JLabel Icolor = cl.CreateLabel("Items Color : " + info[2], 100, 380, 400, 40, 16);
-			//this.add(Icolor);
 			JLabel Isize = cl.CreateLabel("Items Size  : " + info[3], 100, 410, 400, 40, 16);
 			JLabel Iprice = cl.CreateLabel("Items Price  :                                  " + info[1], 100, 440, 400, 40, 16);
 			

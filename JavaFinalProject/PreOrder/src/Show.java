@@ -19,15 +19,12 @@ import Instance.*;
 public class Show extends JFrame implements ActionListener {
 
 	JRadioButton blackC, blueC, orangeC, redC; // ปุ่มเลือกรองเท้า
-	JButton confirm;
+	JButton back,confirm;
 
 	public Show() {
-		
-		BufferedImage icon,info;
-		
+
 		try {
-			icon = ImageIO.read(new File("img/icon.jpg"));
-			this.setIconImage(icon);
+			this.setIconImage(ImageIO.read(Show.class.getResource("icon.jpg")));
 			this.setTitle("Shoes Pre-Order");
 			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			this.setSize(800, 600);
@@ -38,24 +35,25 @@ public class Show extends JFrame implements ActionListener {
 			CreateButton cb = new CreateButton();
 			CreateRadioButton cr = new CreateRadioButton();
 			InsertImage ii = new InsertImage();
-			
+
 			JLabel title1 = cl.CreateLabel("Shoes List", 290, 25, 400, 50, 40);
-			
+
 			blackC = cr.CreateRadioButton("Dunk low panda", 160, 250, 300, 50, 18);
-			JLabel shoes1 = ii.InsertImage("img/black.png", 150, 100, 150, 150);
+			JLabel shoes1 = ii.InsertImage(ImageIO.read(Show.class.getResource("black.png")), 150, 100, 150, 150);
 
 			blueC = cr.CreateRadioButton("Dunk low blue", 480, 250, 300, 50, 18);
-			JLabel shoes2 = ii.InsertImage("img/blue.png", 470, 100, 150, 150);
+			JLabel shoes2 = ii.InsertImage(ImageIO.read(Show.class.getResource("blue.png")), 470, 100, 150, 150);
 
 			orangeC = cr.CreateRadioButton("Air Jordan 1mid", 160, 450, 300, 50, 18);
-			JLabel shoes3 = ii.InsertImage("img/orange.png", 150, 300, 150, 150);
+			JLabel shoes3 = ii.InsertImage(ImageIO.read(Show.class.getResource("orange.png")), 150, 300, 150, 150);
 
 			redC = cr.CreateRadioButton("Jordan 1 Chicago", 480, 450, 300, 50, 18);
-			JLabel shoes4 = ii.InsertImage("img/red.png", 470, 300, 150, 150);
+			JLabel shoes4 = ii.InsertImage(ImageIO.read(Show.class.getResource("red.png")), 470, 300, 150, 150);
 
-			info = ImageIO.read(new File("img/choose.png"));
-			JButton confirm = cb.CreateButton("Info",660, 500, 100, 40, 10);
-			confirm.setIcon(new ImageIcon(info.getScaledInstance(15, 15, java.awt.Image.SCALE_SMOOTH)));
+			back = cb.CreateButton("Back", 30, 500, 80, 40, 15);
+			back.addActionListener(this);
+			
+			confirm = cb.CreateButton(ImageIO.read(Show.class.getResource("choose.png")), "Info", 670, 500, 85, 40, 15, 15);
 			confirm.addActionListener(this);
 
 			ButtonGroup bg = new ButtonGroup();
@@ -73,6 +71,7 @@ public class Show extends JFrame implements ActionListener {
 			this.add(shoes3);
 			this.add(redC);
 			this.add(shoes4);
+			this.add(back);
 			this.add(confirm);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -82,42 +81,41 @@ public class Show extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		try {
-			
+
 			String information = "";
 			BufferedImage ChoosenShoes = null;
-			BufferedImage blackS = ImageIO.read(new File("img/black.png"));
-			BufferedImage blueS = ImageIO.read(new File("img/blue.png"));
-			BufferedImage orangeS = ImageIO.read(new File("img/orange.png"));
-			BufferedImage redS = ImageIO.read(new File("img/red.png"));
-			
+
 			if (e.getActionCommand().equals("Info")) {
 				if ((blackC.isSelected() || blueC.isSelected() || orangeC.isSelected() || redC.isSelected())) {
 					if (blackC.isSelected()) {
 						information = "Dunk low panda,3700B,Black";
-						ChoosenShoes = blackS;
+						ChoosenShoes = ImageIO.read(Show.class.getResource("black.png"));
 					}
 					if (blueC.isSelected()) {
 						information = "Dunk low blue,9200B,Blue";
-						ChoosenShoes = blueS;
+						ChoosenShoes = ImageIO.read(Show.class.getResource("blue.png"));
 					}
 					if (orangeC.isSelected()) {
 						information = "Air Jordan 1mid,5200B,Orange";
-						ChoosenShoes = orangeS;
+						ChoosenShoes = ImageIO.read(Show.class.getResource("orange.png"));
 					}
 					if (redC.isSelected()) {
 						information = "Jordan 1 Chicago,5200B,Red";
-						ChoosenShoes = redS;
+						ChoosenShoes = ImageIO.read(Show.class.getResource("red.png"));
 					}
 					this.dispose();
-					new ShowInformation(information,ChoosenShoes).setVisible(true);
+					new ShowInformation(information, ChoosenShoes).setVisible(true);
 				} else if (!(blackC.isSelected() || blueC.isSelected() || orangeC.isSelected() || redC.isSelected())) {
 					JOptionPane.showMessageDialog(null, "You must select 1 types of shoes", "ERROR !!",
 							JOptionPane.ERROR_MESSAGE);
 				}
 			}
+			else if (e.getActionCommand().equals("Back")) {
+				this.dispose();
+				new HomePage().setVisible(true);
+			}
 		} catch (Exception c) {
 			c.printStackTrace(); /* if Error --> class name/method/line that error */
 		}
-
 	}
 }

@@ -21,40 +21,37 @@ import Instance.InsertImage;
 
 public class Address extends JFrame implements ActionListener {
 
-	//---Sent variable---//
-	public String AllInfo; //""
+	// ---Sent variable---//
+	public String AllInfo; // ""
 	public BufferedImage Spic;
-	
+
 	JTextField username, address, zip, email, phone;
-	
-	//---Choice for choosing---//
-	JComboBox country;  
+
+	// ---Choice for choosing---//
+	JComboBox country;
 	String[] _country = { "", "Thailand", "Other..." };
-	
-	//---Save---//
+
+	// ---Save---//
 	JButton save;
 
-	public Address(String Ainfo,BufferedImage Cshoes) {
+	public Address(String Ainfo, BufferedImage Cshoes) {
 
-		AllInfo = Ainfo; //"Jordan 1 Chicago,5200B,Red,40" 
+		AllInfo = Ainfo; /* "Jordan 1 Chicago,5200B,Red,40" */
 		Spic = Cshoes;
-		
-		BufferedImage icon;
 
 		try {
-			icon = ImageIO.read(new File("img/icon.jpg"));
-			this.setIconImage(icon);
+			this.setIconImage(ImageIO.read(Address.class.getResource("icon.jpg")));
 			this.setTitle("Shoes Pre-Order");
 			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			this.setSize(800, 600);
-			this.setLocationRelativeTo(null); //---Set Frame in the middle---//
+			this.setLocationRelativeTo(null); /* Set Frame in the middle */
 			this.setLayout(null);
-			
+
 			CreateLabel cl = new CreateLabel();
 			CreateButton cb = new CreateButton();
 			CreateRadioButton cr = new CreateRadioButton();
 			InsertImage ii = new InsertImage();
-			
+
 			// ----------------Topic-----------------------------
 			JLabel title = cl.CreateLabel("Address", 300, 20, 400, 40, 38);
 
@@ -117,12 +114,12 @@ public class Address extends JFrame implements ActionListener {
 	}
 
 	private boolean alltrue = false;
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+
 		int counter = 0;
-		
+
 		if (e.getActionCommand().equals("Save")) {
 
 			String checkusername = username.getText();
@@ -132,17 +129,18 @@ public class Address extends JFrame implements ActionListener {
 			String checkcountry = country.getSelectedItem().toString();
 			String checkphone = phone.getText();
 
-			//------------Check first condition || If fill all the blank || counter == 0------------------// 
+			/* Check first condition || If fill all the blank || counter == 0 */
 			if (checkusername.length() == 0 || checkaddress.length() == 0 || checkzip.length() == 0
 					|| checkemail.length() == 0 || country.getSelectedItem() == "" || checkphone.length() == 0) {
 				JOptionPane.showMessageDialog(null, "Please fill all blank !!!", "ERROR !!",
 						JOptionPane.QUESTION_MESSAGE);
 				counter++;
 			}
-			//----------Check Second condition || --------------// 
+
+			/* Check Second condition */
 			if (counter == 0) {
-				
-				////------------If Zip/Postal is all number || counter == 0-----------------////
+				//// ------------If Zip/Postal is all number || counter ==
+				//// 0-----------------////
 				for (int i = 0; i < checkzip.length(); i++) {
 					if (!(Character.isDigit(checkzip.charAt(i)))) {
 						zip.setText("");
@@ -155,7 +153,8 @@ public class Address extends JFrame implements ActionListener {
 					}
 				}
 
-				////------------If email is input in the correct format || counter == 0-----------------////
+				//// ------------If email is input in the correct format || counter ==
+				//// 0-----------------////
 				if (!(checkemail.endsWith("@gmail.com") || checkemail.endsWith("@hotmail.com"))) {
 					email.setText("");
 					email.setBounds(19, 320, 700, 30);
@@ -165,7 +164,7 @@ public class Address extends JFrame implements ActionListener {
 					counter++;
 				}
 
-				////---------If phone is input only number || counter == 0------------////
+				//// ---------If phone is input only number || counter == 0------------////
 				for (int i = 0; i < checkphone.length(); i++) {
 					if (!(Character.isDigit(checkphone.charAt(i)))) {
 						phone.setText("");
@@ -177,20 +176,17 @@ public class Address extends JFrame implements ActionListener {
 					}
 				}
 			}
-			
-			//-------------If all is correct format || counter == 0 || 
+
+			/* Final Condition || if all is correct format || counter == 0 */
 			if (counter == 0) {
 				alltrue = true;
-				String Addressinfo = checkusername+","+
-				                     checkaddress+","+
-						             checkzip+","+
-				                     checkemail+","+
-						             checkcountry+","+
-				                     checkphone;   //  "name,address,zip,mail,country,phone"
+				String Addressinfo = checkusername + "," + checkaddress + "," + checkzip + "," + checkemail + ","
+						+ checkcountry + "," + checkphone;
+				/* inside this String == "name,address,zip,mail,country,phone" */
 				if (e.getActionCommand().equals("Save") && alltrue == true) {
-					AllInfo += "," + Addressinfo; //"Jordan 1 Chicago,5200B,Red,40,name,address,zip,mail,country,phone" 
+					AllInfo += "," + Addressinfo; // "Jordan 1 Chicago,5200B,Red,40,name,address,zip,mail,country,phone"
 					this.setVisible(false);
-					new Receipt(AllInfo,Spic).setVisible(true);
+					new Receipt(AllInfo, Spic).setVisible(true);
 				}
 			}
 		}

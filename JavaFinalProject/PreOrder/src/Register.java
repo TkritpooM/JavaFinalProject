@@ -22,15 +22,13 @@ import Instance.InsertImage;
 
 public class Register extends JFrame implements ActionListener {
 
-	BufferedImage icon;
 	JTextField firstname, lastname, user;
 	JPasswordField pass, Cpass;
 	JCheckBox showPassword;
 
 	public Register() {
 		try {
-			icon = ImageIO.read(new File("img/icon.jpg"));
-			this.setIconImage(icon);
+			this.setIconImage(ImageIO.read(Register.class.getResource("icon.jpg")));
 			this.setTitle("Shoes Pre-Order");
 			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			this.setSize(800, 600);

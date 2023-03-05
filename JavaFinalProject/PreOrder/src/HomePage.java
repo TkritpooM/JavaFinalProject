@@ -10,6 +10,7 @@ import java.io.File;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import Instance.CreateButton;
 import Instance.CreateLabel;
 import Instance.InsertImage;
 
@@ -18,12 +19,8 @@ public class HomePage extends JFrame implements ActionListener {
 	JButton enter, exit;
 
 	public HomePage() {
-
-		BufferedImage icon = null, enterr = null, exitt = null;
-
 		try {
-			icon = ImageIO.read(new File("img/icon.jpg"));
-			this.setIconImage(icon);
+			this.setIconImage(ImageIO.read(HomePage.class.getResource("icon.jpg")));
 			this.setTitle("Shoes Pre-Order");
 			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			this.setSize(800, 600);
@@ -31,22 +28,18 @@ public class HomePage extends JFrame implements ActionListener {
 			this.setLayout(null);
 
 			CreateLabel cl = new CreateLabel();
+			CreateButton cb = new CreateButton();
+			InsertImage ii = new InsertImage();
+			
 			JLabel title1 = cl.CreateLabel("Pre-Order", 290, 50, 400, 50, 40);
 			JLabel title2 = cl.CreateLabel("Sneaker", 300, 100, 400, 50, 40);
 
-			InsertImage ii = new InsertImage();
-			JLabel shoesicon = ii.InsertImage("img/222222.png", 200, 60, 400, 400);
+			JLabel shoesicon = ii.InsertImage(ImageIO.read(HomePage.class.getResource("222222.png")), 200, 60, 400, 400);
 
-			enterr = ImageIO.read(new File("img/enter.png"));
-			enter = new JButton("Enter");
-			enter.setIcon(new ImageIcon(enterr.getScaledInstance(15, 15, java.awt.Image.SCALE_SMOOTH)));
-			enter.setBounds(200, 450, 90, 40);
+			enter = cb.CreateButton(ImageIO.read(HomePage.class.getResource("enter.png")), "Enter", 200, 450, 90, 40, 15, 15);
 			enter.addActionListener(this);
 
-			exitt = ImageIO.read(new File("img/logout.png"));
-			exit = new JButton("Exit");
-			exit.setIcon(new ImageIcon(exitt.getScaledInstance(15, 15, java.awt.Image.SCALE_SMOOTH)));
-			exit.setBounds(500, 450, 90, 40);
+			exit = cb.CreateButton(ImageIO.read(HomePage.class.getResource("logout.png")), "Exit", 500, 450, 90, 40, 15, 15);
 			exit.addActionListener(this);
 
 			this.add(title1);
@@ -63,7 +56,8 @@ public class HomePage extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("Exit")) {
-			System.exit(0);
+			JOptionPane.showMessageDialog(null, "\tThank You for Visiting");
+			System.exit(0); /* Close the program */
 		}
 		if (e.getActionCommand().equals("Enter")) {
 			this.dispose();

@@ -20,7 +20,6 @@ import Instance.*;
 
 public class Login extends JFrame implements ActionListener {
 
-	BufferedImage icon;
 	JTextField user;
 	JPasswordField pass;
 	JButton sign, regis_btn;
@@ -29,8 +28,7 @@ public class Login extends JFrame implements ActionListener {
 
 	public Login() {
 		try {
-			icon = ImageIO.read(new File("img/icon.jpg"));
-			this.setIconImage(icon);
+			this.setIconImage(ImageIO.read(Login.class.getResource("icon.jpg")));
 			this.setTitle("Shoes Pre-Order");
 			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			this.setSize(800, 600);
@@ -43,12 +41,12 @@ public class Login extends JFrame implements ActionListener {
 
 			JLabel Title = cl.CreateLabel("Sneaker Pre-Order", 240, 30, 400, 50, 40);
 
-			JLabel userimage = ii.InsertImage("img/user.png", 170, 160, 20, 20);
+			JLabel userimage = ii.InsertImage(ImageIO.read(Login.class.getResource("user.png")), 170, 160, 20, 20);
 			JLabel Username = cl.CreateLabel("Username", 200, 150, 200, 40, 18);
 			user = new JTextField();
 			user.setBounds(300, 150, 200, 40);
 
-			JLabel passimage = ii.InsertImage("img/pass.png", 170, 210, 20, 20);
+			JLabel passimage = ii.InsertImage(ImageIO.read(Login.class.getResource("pass.png")), 170, 210, 20, 20);
 			JLabel Password = cl.CreateLabel("Password", 200, 200, 200, 40, 18);
 			pass = new JPasswordField();
 			pass.setBounds(300, 200, 200, 40);
@@ -78,7 +76,9 @@ public class Login extends JFrame implements ActionListener {
 			this.add(regis_btn);
 		} catch (Exception e) {
 			/* use to detected error from image search --> print in console */
-			/* print in the console class name and line number where the exception occurred */
+			/*
+			 * print in the console class name and line number where the exception occurred
+			 */
 			e.printStackTrace();
 		}
 	}
